@@ -9,13 +9,13 @@ header {
 header h1 {
   font-family: 'Pokemon Solid';
   font-size: 3rem;
-  color: #FFD721;
+  color: #F8DB05;
   text-shadow:
   -2px -2px 0 #1E00DE
    2px -2px 0 #1E00DE
   -2px  2px 0 #1E00DE
    12px  10px 0 #1E00DE;
-   -webkit-text-stroke: 2px #1E00DE;
+   -webkit-text-stroke: 2px #050AF8;
    letter-spacing: -2px;
    transform: rotate(-3deg);
 }

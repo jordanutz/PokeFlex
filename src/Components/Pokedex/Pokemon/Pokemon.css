@@ -1,0 +1,14 @@
+.Pokemon {
+  width: 45px;
+  height: 45px;
+  padding: .5rem;
+  border-radius: 50%;
+  cursor: pointer;
+  display: flex;
+  justify-content: center;
+  margin: .25rem;
+  vertical-align: middle;
+  background: gray;
+  border: 2px solid black;
+
+}

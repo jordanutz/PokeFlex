@@ -7,6 +7,7 @@ import Filter from './Components/Filter/Filter'
 import Footer from './Components/Footer/Footer'
 
 class App extends Component {
+
   render() {
     return (
       <div className="App">

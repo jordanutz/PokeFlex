@@ -5,6 +5,17 @@ require('dotenv').config()
 
 const controller = require('./pokemon_controller')
 const app = express()
+app.use(bodyParser.json())
+app.use( express.static( `${__dirname}/../build` ) )
+
+massive(process.env.CONNECTION_STRING).then(db => {
+  app.set('db', db)
+}).catch(error => console.log(error))
+
+app.get('/api/pokemon', controller.getPokedex)
+// app.get('/api/pokemon/:id', controller.getPokemon)
+// app.post('/api/pokemon', controller.create)
+// app.delete('/api/pokemon/:id', controller.delete)
 
 PORT = 1993;
 app.listen(PORT, () => {

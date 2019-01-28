@@ -1,42 +1,69 @@
-import React, {Component} from 'react'
+import React from 'react'
 import './Team.css'
-import axios from 'axios'
 
-class Team extends Component {
-  // constructor () {
-  //   super()
-  //   this.state = {
-  //     team: []
-  //   }
-  // }
+const Team = (props) => {
 
-  // componentDidMount () {
-  //   axios.get('/api/team').then(res => {
-  //     this.setState({
-  //       team: res.data
-  //     })
-  //   })
-  // }
+  console.log(props)
 
-  render () {
+    let background = {
+      "grass": "#53FF73",
+      "fire": "#FF5353",
+      "water": "#5378FF",
+      "poison": "#8953FF",
+      "bug": "#C6E80B",
+      "electric": "#FFC153",
+      "normal": "#FFEBCD",
+      "psychic": "#FF539F",
+      "ice": "#53BCFF",
+      "flying": "#FFEBCD",
+      "fairy": "#FF5EDB",
+      "ground": "#DEB887",
+      "rock": "#CD853F",
+      "ghost": "#A80BE8",
+      "dragon": "#4101FF",
+      "fighting": "#FF7D53"
+    }
 
-    const displayedTeam = this.props.team.map(pokemon => {
-      console.log(pokemon)
+    let border = {
+      "grass": "#009B4E",
+      "fire": "#9B1F00",
+      "water": "#00359B",
+      "poison": "#67009B",
+      "bug": "#829A00",
+      "electric": "#E4C200",
+      "normal": "#D0B895",
+      "psychic": "#B50050",
+      "ice": "#0068AA",
+      "flying": "#A49D94",
+      "fairy": "#9A0077",
+      "ground": "#977549",
+      "rock": "#915820",
+      "ghost": "#680093",
+      "dragon": "#240091",
+      "fighting": "#B3370E"
+    }
+
+    const displayedTeam = props.team.map(pokemon => {
+
       return (
-        <div className="Team">
-          <div className="TeamIcon">
-            <img src={pokemon.image} />
-          </div>
+        <div className="TeamIcon"
+          key={pokemon.id}
+          style={{'background': background[pokemon.type],
+                'border-color': border[pokemon.type]}}>
+          <img src={pokemon.image} alt="Pokemon"/>
         </div>
+
       )
     })
 
     return (
-      <div className="TeamDisplay">
-        {displayedTeam}
+      <div className="Team">
+        <h1>Your Team</h1>
+        <div className="TeamDisplay">
+          {displayedTeam}
+        </div>
       </div>
-    )
-  }
+  )
 }
 
 export default Team

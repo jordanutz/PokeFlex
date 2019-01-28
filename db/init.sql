@@ -1,5 +1,9 @@
-select * from pokemon
 drop table pokemon
+drop table team
+
+select * from pokemon
+select * from team
+select * from team join pokemon on team.pokemon_id = pokemon.id
 
 create table pokemon (
   id serial primary key,
@@ -10,10 +14,9 @@ create table pokemon (
 )
 
 create table team (
-  id serial primary key,
-  pokemon _id integer
+    id serial primary key,
+    pokemon_id integer
 )
-
 insert into pokemon
     (name, type, sprite, image)
     values

@@ -13,6 +13,7 @@ massive(process.env.CONNECTION_STRING).then(db => {
 }).catch(error => console.log(error))
 
 app.get('/api/pokemon', controller.getPokedex)
+app.get('/api/team', controller.getTeam)
 // app.get('/api/pokemon/:id', controller.getPokemon)
 app.post('/api/pokemon', controller.createPokemon)
 // app.delete('/api/pokemon/:id', controller.delete)

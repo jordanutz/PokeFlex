@@ -14,17 +14,21 @@ class App extends Component {
     }
   }
 
-  addPokemon = (id, name, image, type) => {
+  componentDidMount () {
+    this.getTeam()
+  }
 
-    const addedPokemon = {
-      id: id,
-      name: name,
-      image: image,
-      type: type
-    }
+  getTeam = () => {
+    axios.get('/api/team').then(res => {
+      this.setState({
+        team: res.data
+      })
+    })
+  }
 
-    axios.post('/api/pokemon', addedPokemon).then(res => {
-      console.log(res)
+  addPokemon = (id) => {
+    axios.post('/api/pokemon', {id}).then(res => {
+      this.getTeam()
     })
   }
 
@@ -33,7 +37,7 @@ class App extends Component {
     return (
       <div className="App">
         <Header />
-        <Team />
+        <Team team={this.state.team}/>
         <Pokedex addPokemon={this.addPokemon}/>
         <Footer />
       </div>

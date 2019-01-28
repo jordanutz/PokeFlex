@@ -1,5 +1,3 @@
-team = []
-
 module.exports = {
   getPokedex: (req, res) => {
     const db = req.app.get('db')
@@ -9,8 +7,18 @@ module.exports = {
   },
 
   createPokemon: (req, res) => {
-    const {addedPokemon} = req.body
-    team.push(addedPokemon)
-    res.status(200).send(team)
+    // console.log('req body', req.body)
+    const {id} = req.body
+    const db = req.app.get('db')
+    db.create_team(id)
+    .then(team => res.status(200).send(team))
+    .catch(error => console.log(error))
+  },
+
+  getTeam: (req, res) => {
+    const db = req.app.get('db')
+    db.get_team()
+    .then(team => res.status(200).send(team))
+    .catch(error => console.log(error))
   }
 }

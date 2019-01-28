@@ -3,7 +3,7 @@ import './Pokemon.css'
 
 const Pokemon = (props) => {
 
-  console.log(props)
+  const {id, name, image, type} = props
 
   let background = {
     "grass": "#41ED27",
@@ -25,8 +25,11 @@ const Pokemon = (props) => {
   }
 
   return (
-    <div className="Pokemon" style={{background: background[props.type]}}>
-      <img src={props.sprite} />
+    <div className="Pokemon"
+      style={{background: background[props.type]}}
+      onClick={() => props.addPokemon(id, name, image, type)}>
+
+      <img src={props.sprite} alt="Pokemon Sprite" />
     </div>
   )
 }

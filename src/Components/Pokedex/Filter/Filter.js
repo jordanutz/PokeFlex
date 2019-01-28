@@ -4,9 +4,9 @@ import './Filter.css'
 class Filter extends Component {
   render () {
     return (
-      <div>
-        Filter
-      </div>
+      <section>
+        Here lies Filter
+      </section>
     )
   }
 }

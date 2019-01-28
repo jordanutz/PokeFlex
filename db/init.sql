@@ -9,6 +9,11 @@ create table pokemon (
   image text unique not null
 )
 
+create table team (
+  id serial primary key,
+  pokemon _id integer
+)
+
 insert into pokemon
     (name, type, sprite, image)
     values

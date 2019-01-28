@@ -14,7 +14,7 @@ massive(process.env.CONNECTION_STRING).then(db => {
 
 app.get('/api/pokemon', controller.getPokedex)
 // app.get('/api/pokemon/:id', controller.getPokemon)
-// app.post('/api/pokemon', controller.create)
+app.post('/api/pokemon', controller.createPokemon)
 // app.delete('/api/pokemon/:id', controller.delete)
 
 PORT = 1993;

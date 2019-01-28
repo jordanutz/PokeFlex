@@ -2,12 +2,14 @@ import React, {Component} from 'react'
 import './Pokedex.css'
 import axios from 'axios'
 import Pokemon from './Pokemon/Pokemon'
+import Filter from './Filter/Filter'
 
 class Pokedex extends Component {
   constructor () {
     super()
     this.state = {
-      pokedex: []
+      pokedex: [],
+      toggle: false
     }
   }
 
@@ -19,6 +21,12 @@ class Pokedex extends Component {
     })
   }
 
+  toggleFilter = () => {
+    this.setState({
+      toggle: !this.state.toggle
+    })
+  }
+
   render () {
 
     const {pokedex} = this.state
@@ -26,13 +34,17 @@ class Pokedex extends Component {
     const displayedPokedex = pokedex.map(pokemon => {
       return (
         <div key={pokemon.id} className="PokemonIcon">
-          <Pokemon {...pokemon} />
+          <Pokemon {...pokemon} addPokemon={this.props.addPokemon}/>
         </div>
       )
     })
 
+    const displayFilter = this.state.toggle && <Filter />
+
     return (
       <main>
+        <h1  onClick={this.toggleFilter}>Filter</h1>
+        {displayFilter}
         <div className="Pokedex">
           {displayedPokedex}
         </div>

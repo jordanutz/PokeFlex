@@ -6,16 +6,23 @@
   padding: 1rem;
 }
 
+.Team h1 {
+  text-align: center;
+}
+
 .TeamIcon {
-  padding: 1.5rem;
+  padding: .30rem;
   border-radius: 50%;
   margin: 0 1rem;
   border: 3px solid black;
+  display: flex;
+  justify-content: center;
+  align-items: center;
 }
 
 .Team img {
-  width: 80px;
-  height: 80px;
+  width: 125px;
+  height: 120px;
 }
 
 .TeamPokemon {
@@ -27,7 +34,9 @@
 }
 
 .TeamPokemon h2 {
+  width: 70%;
   text-transform: uppercase;
+  margin: .5rem auto;
 }
 
 .PokemonDetails {

@@ -33,8 +33,8 @@ class Pokedex extends Component {
 
     const displayedPokedex = pokedex.map(pokemon => {
       return (
-        <div key={pokemon.id} className="PokemonIcon">
-          <Pokemon {...pokemon} addPokemon={this.props.addPokemon}/>
+        <div key={pokemon.pokemon_id} className="PokemonIcon">
+          <Pokemon {...pokemon} addPokemon={this.props.addPokemon} team={this.props.team}/>
         </div>
       )
     })

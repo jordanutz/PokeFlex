@@ -3,6 +3,10 @@ import './Pokemon.css'
 
 const Pokemon = (props) => {
 
+  console.log(props.team.length > 6)
+
+  const isEnabled = props.team.length <= 6
+
   const {id} = props
 
   let background = {
@@ -25,12 +29,13 @@ const Pokemon = (props) => {
   }
 
   return (
-    <div className="Pokemon"
+    <button className="Pokemon"
+      disabled={!isEnabled}
       style={{background: background[props.type]}}
-      onClick={() => props.addPokemon(id)}>
+      onClick={() => props.team.length < 6 && props.addPokemon(id)}>
 
       <img src={props.sprite} alt="Pokemon Sprite" />
-    </div>
+    </button>
   )
 }
 

@@ -44,7 +44,7 @@ class App extends Component {
       <div className="App">
         <Header />
         <Team team={this.state.team} deletePokemon={this.deletePokemon}/>
-        <Pokedex addPokemon={this.addPokemon}/>
+        <Pokedex addPokemon={this.addPokemon} team={this.state.team}/>
         <Footer />
       </div>
     );

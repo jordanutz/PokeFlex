@@ -3,7 +3,7 @@ import './Team.css'
 
 const Team = (props) => {
 
-  console.log(props)
+  // console.log(props)
 
     let background = {
       "grass": "#53FF73",
@@ -46,11 +46,20 @@ const Team = (props) => {
     const displayedTeam = props.team.map(pokemon => {
 
       return (
+        <div className="TeamPokemon">
         <div className="TeamIcon"
           key={pokemon.id}
           style={{'background': background[pokemon.type],
-                'border-color': border[pokemon.type]}}>
+                'borderColor': border[pokemon.type]}}
+          onClick={() => props.deletePokemon(pokemon.id)}>
           <img src={pokemon.image} alt="Pokemon"/>
+        </div>
+
+        <div className="PokemonDetails" style={{'background': background[pokemon.type]}}>
+          <h1>{pokemon.name}</h1>
+          <h2>{pokemon.type}</h2>
+        </div>
+
         </div>
 
       )

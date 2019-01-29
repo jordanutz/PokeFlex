@@ -32,12 +32,18 @@ class App extends Component {
     })
   }
 
+  deletePokemon = (id) => {
+    console.log(id)
+    axios.delete(`/api/pokemon/${id}`).then(res => {
+      this.getTeam()
+    })
+  }
 
   render() {
     return (
       <div className="App">
         <Header />
-        <Team team={this.state.team}/>
+        <Team team={this.state.team} deletePokemon={this.deletePokemon}/>
         <Pokedex addPokemon={this.addPokemon}/>
         <Footer />
       </div>

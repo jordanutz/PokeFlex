@@ -20,5 +20,13 @@ module.exports = {
     db.get_team()
     .then(team => res.status(200).send(team))
     .catch(error => console.log(error))
+  },
+
+  deleteTeam: (req, res) => {
+    const db = req.app.get('db')
+    const {id} = req.params
+    db.delete_pokemon(id)
+    .then(team => res.status(200).send(team))
+    .catch(err0r => console.log(error))
   }
 }

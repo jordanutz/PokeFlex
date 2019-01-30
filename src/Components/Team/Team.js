@@ -1,7 +1,16 @@
-import React from 'react'
+import React, {Component} from 'react'
 import './Team.css'
 
-const Team = (props) => {
+class Team extends Component {
+  constructor () {
+    super()
+    this.state = {
+      toggleStats: false
+    }
+  }
+
+
+  render () {
 
     let background = {
       "grass": "#53FF73",
@@ -41,37 +50,39 @@ const Team = (props) => {
       "fighting": "#B3370E"
     }
 
-    const displayedTeam = props.team.map(pokemon => {
+    const displayedTeam = this.props.team.map(pokemon => {
 
       console.log(pokemon)
 
       return (
         <div key={pokemon.pokemon_id} className="TeamPokemon">
-        <div className="TeamIcon"
-          style={{'background': background[pokemon.type],
-                'borderColor': border[pokemon.type]}}
-          onClick={() => props.deletePokemon(pokemon.id)}>
-          <img src={pokemon.image} alt="Pokemon"/>
-        </div>
+          <div className="TeamIcon"
+            style={{'background': background[pokemon.type],
+                  'borderColor': border[pokemon.type]}}
+            onClick={() => this.props.deletePokemon(pokemon.id)}>
+            <img src={pokemon.image} alt="Pokemon"/>
+          </div>
 
-        <div className="PokemonDetails" style={{'background': background[pokemon.type]}}>
-          <h1>{pokemon.name}</h1>
-          <h2>{pokemon.type}</h2>
+          <div className="PokemonDetails" style={{'background': background[pokemon.type]}}>
+            <h1>{pokemon.name}</h1>
+            <h2>{pokemon.type}</h2>
+          </div>
         </div>
-
-        </div>
-
       )
     })
+
+    const displayToggleStats = this.props.team.length > 0;
 
     return (
       <div className="Team">
         <h1>Your Team</h1>
+        <div className="StatToggle">+</div>
         <div className="TeamDisplay">
           {displayedTeam}
         </div>
       </div>
-  )
+    )
+  }
 }
 
 export default Team

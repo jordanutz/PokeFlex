@@ -1,13 +1,52 @@
-.TeamDisplay {
-  width: 100%;
-  height: auto;
-  display: flex;
-  justify-content: center;
-  padding: 1rem;
+.Team {
+  position: relative;
 }
 
 .Team h1 {
   text-align: center;
+}
+
+.Team img {
+  width: 125px;
+  height: 120px;
+}
+
+.TeamDisplay {
+  height: auto;
+  display: flex;
+  justify-content: center;
+  padding: 1rem;
+  margin: 0 auto;
+}
+
+.TeamPokemon {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+  height: auto;
+}
+
+.StatToggle {
+  width: 35px;
+  height: 38px;
+  background: #333DFF;
+  border-radius: 5px;
+  color: white;
+  font-weight: bolder;
+  font-size: 2rem;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin-left: 1rem;
+  cursor: pointer;
+}
+
+.TeamPokemon h2 {
+  width: 70%;
+  text-transform: uppercase;
+  margin: .5rem auto;
 }
 
 .TeamIcon {
@@ -18,25 +57,6 @@
   display: flex;
   justify-content: center;
   align-items: center;
-}
-
-.Team img {
-  width: 125px;
-  height: 120px;
-}
-
-.TeamPokemon {
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
-  text-align: center;
-}
-
-.TeamPokemon h2 {
-  width: 70%;
-  text-transform: uppercase;
-  margin: .5rem auto;
 }
 
 .PokemonDetails {

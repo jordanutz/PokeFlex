@@ -1,5 +1,6 @@
 import React, {Component} from 'react'
 import './Team.css'
+import Stats from '../Stats/Stats'
 
 class Team extends Component {
   constructor () {
@@ -9,6 +10,11 @@ class Team extends Component {
     }
   }
 
+  toggleStats = () => {
+    this.setState({
+      toggleStats: !this.state.toggleStats
+    })
+  }
 
   render () {
 
@@ -52,7 +58,7 @@ class Team extends Component {
 
     const displayedTeam = this.props.team.map(pokemon => {
 
-      console.log(pokemon)
+      // console.log(pokemon)
 
       return (
         <div key={pokemon.pokemon_id} className="TeamPokemon">
@@ -71,14 +77,18 @@ class Team extends Component {
       )
     })
 
-    const displayToggleStats = this.props.team.length > 0;
+    const displayStats = this.state.toggleStats &&
+    <Stats weakness={this.props.weakness} background={background}/>
 
     return (
       <div className="Team">
         <h1>Your Team</h1>
-        <div className="StatToggle">+</div>
+        <div className="StatToggle" onClick={this.toggleStats}>+</div>
         <div className="TeamDisplay">
           {displayedTeam}
+        </div>
+        <div className="StatsDisplay" value="this.state.toggleStats">
+          {displayStats}
         </div>
       </div>
     )

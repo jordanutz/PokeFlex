@@ -3,7 +3,7 @@ import './Pokemon.css'
 
 const Pokemon = (props) => {
 
-  console.log(props.team.length > 6)
+  // console.log(props.team.length > 6)
 
   const isEnabled = props.team.length <= 6
 

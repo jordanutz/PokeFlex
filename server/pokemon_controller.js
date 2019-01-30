@@ -27,6 +27,13 @@ module.exports = {
     const {id} = req.params
     db.delete_pokemon(id)
     .then(team => res.status(200).send(team))
-    .catch(err0r => console.log(error))
+    .catch(error => console.log(error))
+  },
+
+  getWeakness: (req, res) => {
+    const db = req.app.get('db')
+    db.get_weakness()
+    .then(stats => res.status(200).send(stats))
+    .catch(error => console.log(error))
   }
 }

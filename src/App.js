@@ -10,12 +10,14 @@ class App extends Component {
   constructor () {
     super()
     this.state = {
-      team: []
+      team: [],
+      weakness: {}
     }
   }
 
   componentDidMount () {
     this.getTeam()
+    this.getWeakness()
   }
 
   getTeam = () => {
@@ -29,6 +31,7 @@ class App extends Component {
   addPokemon = (id) => {
     axios.post('/api/pokemon', {id}).then(res => {
       this.getTeam()
+      this.getWeakness()
     })
   }
 
@@ -36,6 +39,15 @@ class App extends Component {
     console.log(id)
     axios.delete(`/api/pokemon/${id}`).then(res => {
       this.getTeam()
+      this.getWeakness()
+    })
+  }
+
+  getWeakness = () => {
+    axios.get('/api/stats').then(res => {
+      this.setState({
+        weakness: res.data[0]
+      })
     })
   }
 
@@ -43,8 +55,13 @@ class App extends Component {
     return (
       <div className="App">
         <Header />
-        <Team team={this.state.team} deletePokemon={this.deletePokemon}/>
-        <Pokedex addPokemon={this.addPokemon} team={this.state.team}/>
+        <Team team={this.state.team}
+          deletePokemon={this.deletePokemon}
+          weakness={this.state.weakness}/>
+
+        <Pokedex addPokemon={this.addPokemon}
+          team={this.state.team}/>
+
         <Footer />
       </div>
     );

@@ -14,6 +14,7 @@ massive(process.env.CONNECTION_STRING).then(db => {
 
 app.get('/api/pokemon', controller.getPokedex)
 app.get('/api/team', controller.getTeam)
+app.get('/api/stats', controller.getWeakness)
 app.post('/api/pokemon', controller.createPokemon)
 app.delete('/api/pokemon/:id', controller.deleteTeam)
 

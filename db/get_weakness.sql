@@ -1,0 +1,17 @@
+select SUM(normal) as normal,
+  SUM(grass) as grass,
+  SUM(fire) as fire,
+  SUM(water) as water,
+  SUM(fighting) as fighting,
+  SUM(flying) as flying,
+  SUM(poison) as poison,
+  SUM(ground) as ground,
+  SUM(rock) as rock, 
+  SUM(bug) as bug,
+  SUM(ghost) as ghost,
+  SUM(electric) as electric,
+  SUM(psychic) as psychic,
+  SUM(ice) as ice,
+  SUM(dragon) as dragon,
+  SUM(fairy) as fairy
+from team join weakness on weakness.pokemon_id = team.pokemon_id;

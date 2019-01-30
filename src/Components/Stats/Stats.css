@@ -1,0 +1,35 @@
+.Stats {
+  max-width: 60%;
+  height: auto;
+  padding: 1rem;
+  margin: 0 auto;
+  color: black;
+  border: 1px solid #C9C9C9;
+  border-radius: 3px;
+}
+
+.MainStats {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: flex-start;
+  width: 80%;
+  margin: 0 auto;
+  padding: 1rem;
+}
+
+.TypeStats {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  width: 6.5rem;
+  margin: .5rem;
+}
+
+.TypeStats h1 {
+  width: 100%;
+  padding: .5rem;
+  border-radius: 50px;
+  color: black;
+  text-transform: uppercase;
+  border: 1px solid #C9C9C9;
+}

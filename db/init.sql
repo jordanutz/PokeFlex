@@ -3,7 +3,10 @@ drop table team
 
 select * from pokemon
 select * from team
+
+/* Join Statements */
 select * from team join pokemon on team.pokemon_id = pokemon.id
+select * from team join weakness on weakness.pokemon_id = team.pokemon_id
 
 create table pokemon (
   id serial primary key,
@@ -11,6 +14,10 @@ create table pokemon (
   type varchar(100) not null,
   sprite text unique not null,
   image text unique not null
+)
+
+create table team (
+    pokemon_id integer primary key,
 )
 
 create table weakness (
@@ -30,7 +37,8 @@ create table weakness (
   electric integer,
   psychic integer,
   ice integer,
-  dragon integer
+  dragon integer,
+  fairy integer
 )
 
 create table resistance (
@@ -50,13 +58,10 @@ create table resistance (
   electric integer,
   psychic integer,
   ice integer,
-  dragon integer
+  dragon integer,
+  fairy integer
 )
 
-create table team (
-    id serial primary key,
-    pokemon_id integer
-)
 insert into pokemon
     (name, type, sprite, image)
     values

@@ -7,8 +7,6 @@ const Pokemon = (props) => {
 
   const isEnabled = props.team.length <= 6
 
-  const {id} = props
-
   let background = {
     "grass": "#53FF73",
     "fire": "#FF5353",
@@ -28,11 +26,32 @@ const Pokemon = (props) => {
     "fighting": "#FF7D53"
   }
 
+  let border = {
+    "grass": "#009B4E",
+    "fire": "#9B1F00",
+    "water": "#00359B",
+    "poison": "#67009B",
+    "bug": "#829A00",
+    "electric": "#E4C200",
+    "normal": "#D0B895",
+    "psychic": "#B50050",
+    "ice": "#0068AA",
+    "flying": "#A49D94",
+    "fairy": "#9A0077",
+    "ground": "#977549",
+    "rock": "#915820",
+    "ghost": "#680093",
+    "dragon": "#240091",
+    "fighting": "#B3370E"
+  }
+
   return (
     <button className="Pokemon"
       disabled={!isEnabled}
-      style={{background: background[props.type]}}
-      onClick={() => props.team.length < 6 && props.addPokemon(id)}>
+      style={{background: background[props.type],
+      'borderColor': border[props.type]
+      }}
+      onClick={() => props.team.length < 6 && props.addPokemon(props.id)}>
 
       <img src={props.sprite} alt="Pokemon Sprite" />
     </button>

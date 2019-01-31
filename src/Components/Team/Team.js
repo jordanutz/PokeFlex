@@ -78,11 +78,11 @@ class Team extends Component {
     })
 
     const displayToggle = this.state.toggleStats ?
-    <div className="StatToggle" onClick={this.toggleStats}>-</div> :
-    <div className="StatToggle" onClick={this.toggleStats}>+</div>
+      <div className="StatToggle" onClick={this.toggleStats}>-</div> :
+      <div className="StatToggle" onClick={this.toggleStats}>+</div>
 
     const displayStats = this.state.toggleStats &&
-    <Stats weakness={this.props.weakness} background={background} resistance={this.props.resistance}/>
+      <Stats weakness={this.props.weakness} background={background} resistance={this.props.resistance}/>
 
     return (
       <div className="Team">

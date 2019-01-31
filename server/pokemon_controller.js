@@ -3,7 +3,7 @@ module.exports = {
     const db = req.app.get('db')
     db.get_pokedex()
     .then(pokedex => res.status(200).send(pokedex))
-    .catch(error => console.log(error))
+    // .catch(error => console.log(error))
   },
 
   createPokemon: (req, res) => {

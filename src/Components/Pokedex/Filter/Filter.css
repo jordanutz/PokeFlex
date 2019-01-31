@@ -2,4 +2,36 @@ section {
   min-width: 60%;
   height: auto;
   padding: 1rem;
+  display: flex;
+  justify-content: space-evenly;
+  border-top: 1px solid #C9C9C9;
+}
+
+
+.FilterCondition {
+  min-width: 30%;
+  display: flex;
+  padding: .5rem;
+  justify-content: space-around;
+  align-items: center;
+}
+
+.FilterCondition button {
+  width: 60%;
+  border: none;
+  padding: .5rem;
+  cursor: pointer;
+}
+
+.FilterCondition button:hover {
+  background: #C9C9C9;
+}
+
+.ToggleSelection {
+  background: #33A4FF;
+  color: white;
+  position: absolute;
+  padding: 1rem 3rem 1rem 1rem;
+  top: 580px;
+  margin-left: 30px;
 }

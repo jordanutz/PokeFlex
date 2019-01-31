@@ -11,13 +11,15 @@ class App extends Component {
     super()
     this.state = {
       team: [],
-      weakness: {}
+      weakness: {},
+      resistance: {}
     }
   }
 
   componentDidMount () {
     this.getTeam()
     this.getWeakness()
+    this.getResistance()
   }
 
   getTeam = () => {
@@ -32,6 +34,7 @@ class App extends Component {
     axios.post('/api/pokemon', {id}).then(res => {
       this.getTeam()
       this.getWeakness()
+      this.getResistance()
     })
   }
 
@@ -40,13 +43,22 @@ class App extends Component {
     axios.delete(`/api/pokemon/${id}`).then(res => {
       this.getTeam()
       this.getWeakness()
+      this.getResistance()
     })
   }
 
   getWeakness = () => {
-    axios.get('/api/stats').then(res => {
+    axios.get('/api/stats/weakness').then(res => {
       this.setState({
         weakness: res.data[0]
+      })
+    })
+  }
+
+  getResistance = () => {
+    axios.get('/api/stats/resistance').then(res => {
+      this.setState({
+        resistance: res.data[0]
       })
     })
   }
@@ -57,11 +69,12 @@ class App extends Component {
         <Header />
         <Team team={this.state.team}
           deletePokemon={this.deletePokemon}
-          weakness={this.state.weakness}/>
+          weakness={this.state.weakness}
+          resistance={this.state.resistance}
+          />
 
         <Pokedex addPokemon={this.addPokemon}
           team={this.state.team}/>
-
         <Footer />
       </div>
     );

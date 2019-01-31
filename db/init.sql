@@ -7,6 +7,7 @@ select * from team
 /* Join Statements */
 select * from team join pokemon on team.pokemon_id = pokemon.id
 select * from team join weakness on weakness.pokemon_id = team.pokemon_id
+select * from team join resistance on resistance.pokemon_id = team.pokemon_id
 
 create table pokemon (
   id serial primary key,

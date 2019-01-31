@@ -35,5 +35,13 @@ module.exports = {
     db.get_weakness()
     .then(stats => res.status(200).send(stats))
     .catch(error => console.log(error))
+  },
+
+  getResistance: (req, res) => {
+    // console.log('hit')
+    const db = req.app.get('db')
+    db.get_resistance()
+    .then(stats => res.status(200).send(stats))
+    .catch(error => console.log(error))
   }
 }

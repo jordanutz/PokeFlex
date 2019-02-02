@@ -4,7 +4,6 @@ import axios from 'axios'
 import Header from './Components/Header/Header'
 import Pokedex from './Components/Pokedex/Pokedex'
 import Team from './Components/Team/Team'
-import Footer from './Components/Footer/Footer'
 
 class App extends Component {
   constructor () {
@@ -75,7 +74,6 @@ class App extends Component {
 
         <Pokedex addPokemon={this.addPokemon}
           team={this.state.team}/>
-        <Footer />
       </div>
     );
   }

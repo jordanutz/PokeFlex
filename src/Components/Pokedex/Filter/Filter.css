@@ -28,10 +28,14 @@ section {
 }
 
 .ToggleSelection {
-  background: #33A4FF;
+  background: rgba(51, 164, 255, .9);
   color: white;
   position: absolute;
   padding: 1rem 3rem 1rem 1rem;
   top: 580px;
   margin-left: 30px;
+}
+
+.ToggleSelection input {
+  cursor: pointer;
 }

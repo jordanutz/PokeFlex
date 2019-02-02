@@ -9,7 +9,8 @@ class Pokedex extends Component {
     super()
     this.state = {
       pokedex: [],
-      toggle: false
+      toggle: false,
+
     }
   }
 
@@ -18,6 +19,14 @@ class Pokedex extends Component {
       this.setState({
         pokedex: res.data
       })
+    })
+  }
+
+  filterStuff = () => {
+    axios.get(`/api/filter?type=`).then( res => {
+
+    }).catch( error => {
+      console.log(error)
     })
   }
 
@@ -37,7 +46,7 @@ class Pokedex extends Component {
 
       return (
         <div className="PokemonIcon" key={pokemon.id} >
-          <Pokemon {...pokemon}  addPokemon={this.props.addPokemon} team={this.props.team}/>
+          <Pokemon {...pokemon} addPokemon={this.props.addPokemon} team={this.props.team}/>
         </div>
       )
     })

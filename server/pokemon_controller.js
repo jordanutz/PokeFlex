@@ -43,5 +43,10 @@ module.exports = {
     db.get_resistance()
     .then(stats => res.status(200).send(stats))
     .catch(error => console.log(error))
+  },
+
+  filterPokemon: (req, res) => {
+    const db = req.app.get('db')
+    console.log(req.body)
   }
 }

@@ -1,6 +1,7 @@
 import React, {Component} from 'react'
 import './Filter.css'
 import {Form} from 'react-bootstrap'
+import axios from 'axios'
 
 class Filter extends Component {
   constructor () {
@@ -9,26 +10,25 @@ class Filter extends Component {
       toggleType: false,
       toggleEvolution: false,
       filtered: {
-        normal: true,
-        grass: true,
-        fire: true,
-        water: true,
-        fighting: true,
-        flying: true,
-        poison: true,
-        ground: true,
-        rock: true,
-        bug: true,
-        ghost: true,
-        electric: true,
-        psychic: true,
-        ice: true,
-        dragon: true,
-        fairy: true
+        normal: false,
+        grass: false,
+        fire: false,
+        water: false,
+        fighting: false,
+        flying: false,
+        poison: false,
+        ground: false,
+        rock: false,
+        bug: false,
+        ghost: false,
+        electric: false,
+        psychic: false,
+        ice: false,
+        dragon: false,
+        fairy: false
       }
     }
   }
-
 
   handleToggleType = () => {
     this.setState({
@@ -42,17 +42,24 @@ class Filter extends Component {
     })
   }
 
+  // setState is Asynchronous, so must include callback to access mutated state.
+
   filterPokedex = (value) => {
     const copy = {...this.state.filtered}
     copy[value] = !copy[value]
     this.setState({
       filtered: copy
+    }, () => {
+      axios.post('/api/pokemon/filter', this.state.filtered).then(res => {
+        console.log(res.data)
+      })
     })
   }
 
+
   render () {
 
-    console.log(this.state.filtered)
+    // console.log('render', this.state.filtered)
 
 
     const displayType = this.state.toggleType &&

@@ -1,6 +1,9 @@
 import React, {Component} from 'react'
 import './Pokedex.css'
 import axios from 'axios'
+import {connect} from 'react-redux'
+import {getPokedex} from '../../redux/reducer'
+
 import Pokemon from './Pokemon/Pokemon'
 import Filter from './Filter/Filter'
 
@@ -8,17 +11,13 @@ class Pokedex extends Component {
   constructor () {
     super()
     this.state = {
-      pokedex: [],
       toggle: false,
-
     }
   }
 
   componentDidMount () {
     axios.get('/api/pokemon').then(res => {
-      this.setState({
-        pokedex: res.data
-      })
+      this.props.getPokedex(res.data)
     })
   }
 
@@ -38,12 +37,8 @@ class Pokedex extends Component {
 
   render () {
 
-    const {pokedex} = this.state
-
+    const {pokedex} = this.props
     const displayedPokedex = pokedex.map(pokemon => {
-
-      // console.log(pokemon)
-
       return (
         <div className="PokemonIcon" key={pokemon.id} >
           <Pokemon {...pokemon} addPokemon={this.props.addPokemon} team={this.props.team}/>
@@ -65,4 +60,15 @@ class Pokedex extends Component {
   }
 }
 
-export default Pokedex
+const mapStateToProps = (state) => {
+  console.log(state)
+  return {
+    pokedex: state.pokedex
+  }
+}
+
+const mapDispatchToProps = {
+  getPokedex
+}
+
+export default connect(mapStateToProps, mapDispatchToProps)(Pokedex)

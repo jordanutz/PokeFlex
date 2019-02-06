@@ -58,7 +58,7 @@ class Filter extends Component {
     }
 
     this.setState({filtered: arrayCopy}, () => {
-      console.log(this.state.filtered)
+      // console.log(this.state.filtered)
       axios.post(`/api/pokemon/filter?type=${this.state.filtered}`).then(res => {
         console.log(res.data)
       })

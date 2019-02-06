@@ -1,9 +1,12 @@
 import React, { Component } from 'react'
 import './Reset.css'
 import axios from 'axios'
+
+
 import Header from './Components/Header/Header'
 import Pokedex from './Components/Pokedex/Pokedex'
 import Team from './Components/Team/Team'
+
 
 class App extends Component {
   constructor () {
@@ -79,4 +82,4 @@ class App extends Component {
   }
 }
 
-export default App;
+export default App

@@ -47,6 +47,14 @@ module.exports = {
 
   filterPokemon: (req, res) => {
     const db = req.app.get('db')
-    console.log(req.body)
+    const filteredData = req.query.type.split(',')
+    db.get_pokedex()
+    .then(pokedex => {
+      let filteredPokemon = pokedex.filter( pokemon => {
+        return filteredData.indexOf(pokemon.type) === -1
+      })
+      res.status(200).send(filteredPokemon)
+    })
+    .catch(error => console.log('Unable to retrieve filtered pokedex', error))
   }
 }

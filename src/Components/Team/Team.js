@@ -84,11 +84,13 @@ class Team extends Component {
     const displayStats = this.state.toggleStats &&
       <Stats weakness={this.props.weakness} background={background} resistance={this.props.resistance}/>
 
+    const toggleCheck = this.props.team.length > 0 && displayToggle
+
     return (
       <div className="Team">
         <div className="TeamHeader">
           <h1>Your Team</h1>
-          {displayToggle}
+          {toggleCheck}
         </div>
         <div className="TeamDisplay">
           {displayedTeam}

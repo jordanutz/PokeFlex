@@ -9,7 +9,7 @@ class Filter extends Component {
     this.state = {
       toggleType: false,
       toggleEvolution: false,
-      filtered: {
+      filteredToggle: {
         normal: false,
         grass: false,
         fire: false,
@@ -26,7 +26,8 @@ class Filter extends Component {
         ice: false,
         dragon: false,
         fairy: false
-      }
+      },
+      filtered: []
     }
   }
 
@@ -42,25 +43,29 @@ class Filter extends Component {
     })
   }
 
-  // setState is Asynchronous, so must include callback to access mutated state.
+  // setState is asynchronous, so must include callback as second parameter to access mutated state.
 
   filterPokedex = (value) => {
-    const copy = {...this.state.filtered}
+    const copy = {...this.state.filteredToggle}
+    const arrayCopy = [...this.state.filtered]
+
     copy[value] = !copy[value]
-    this.setState({
-      filtered: copy
-    }, () => {
-      axios.post('/api/pokemon/filter', this.state.filtered).then(res => {
+
+    if (copy[value] && arrayCopy.indexOf(value) === -1) {
+      arrayCopy.push(value)
+    } else {
+      arrayCopy.splice(arrayCopy.indexOf(value), 1)
+    }
+
+    this.setState({filtered: arrayCopy}, () => {
+      console.log(this.state.filtered)
+      axios.post(`/api/pokemon/filter?type=${this.state.filtered}`).then(res => {
         console.log(res.data)
       })
     })
   }
 
-
   render () {
-
-    // console.log('render', this.state.filtered)
-
 
     const displayType = this.state.toggleType &&
       <form className="ToggleSelection">

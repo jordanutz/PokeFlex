@@ -2,10 +2,12 @@ import React, {Component} from 'react'
 import './Filter.css'
 import {Form} from 'react-bootstrap'
 import axios from 'axios'
+import {connect} from 'react-redux'
+import {getPokedex} from '../../../redux/reducer'
 
 class Filter extends Component {
-  constructor () {
-    super()
+  constructor (props) {
+    super(props)
     this.state = {
       toggleType: false,
       toggleEvolution: false,
@@ -60,12 +62,15 @@ class Filter extends Component {
     this.setState({filtered: arrayCopy}, () => {
       // console.log(this.state.filtered)
       axios.post(`/api/pokemon/filter?type=${this.state.filtered}`).then(res => {
-        console.log(res.data)
+        this.props.getPokedex(res.data)
       })
     })
+    this.props.retrievePokedex()
   }
 
   render () {
+
+    console.log(this.props)
 
     const displayType = this.state.toggleType &&
       <form className="ToggleSelection">
@@ -110,4 +115,14 @@ class Filter extends Component {
   }
 }
 
-export default Filter
+const mapStateToProps = (state) => {
+  return {
+    pokedex: state.pokedex
+  }
+}
+
+const mapDispatchToProps = {
+  getPokedex
+}
+
+export default connect(mapStateToProps, mapDispatchToProps)(Filter)

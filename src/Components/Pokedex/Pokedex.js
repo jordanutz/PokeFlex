@@ -16,16 +16,12 @@ class Pokedex extends Component {
   }
 
   componentDidMount () {
-    axios.get('/api/pokemon').then(res => {
-      this.props.getPokedex(res.data)
-    })
+    this.retrievePokedex()
   }
 
-  filterStuff = () => {
-    axios.get(`/api/filter?type=`).then( res => {
-
-    }).catch( error => {
-      console.log(error)
+  retrievePokedex = () => {
+    axios.get('/api/pokemon').then(res => {
+      this.props.getPokedex(res.data)
     })
   }
 
@@ -46,11 +42,11 @@ class Pokedex extends Component {
       )
     })
 
-    const displayFilter = this.state.toggle && <Filter />
+    const displayFilter = this.state.toggle && <Filter retrievePokedex={this.retrievePokedex}/>
 
     return (
       <main>
-        <h1  onClick={this.toggleFilter}>Filter</h1>
+        <h1 onClick={this.toggleFilter}>Filter</h1>
         {displayFilter}
         <div className="Pokedex">
           {displayedPokedex}

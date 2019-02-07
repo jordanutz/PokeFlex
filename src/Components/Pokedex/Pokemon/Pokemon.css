@@ -11,7 +11,7 @@
 }
 
 .Pokemon img:hover {
-  animation: hop .25s linear infinite;
+  animation: hop .30s linear infinite;
 }
 
 @keyframes hop {

@@ -1,5 +1,6 @@
 import React from 'react'
 import './Pokemon.css'
+import Radium from 'radium'
 
 const Pokemon = (props) => {
 
@@ -13,7 +14,7 @@ const Pokemon = (props) => {
     "water": "#5378FF",
     "poison": "#8953FF",
     "bug": "#C6E80B",
-    "electric": "#FFC153",
+    "electric": "#FEFF2D",
     "normal": "#FFEBCD",
     "psychic": "#FF539F",
     "ice": "#53BCFF",
@@ -27,12 +28,12 @@ const Pokemon = (props) => {
   }
 
   let border = {
-    "grass": "#009B4E",
+    "grass": "#0EC600",
     "fire": "#9B1F00",
     "water": "#00359B",
     "poison": "#67009B",
     "bug": "#829A00",
-    "electric": "#E4C200",
+    "electric": "#ECC900",
     "normal": "#D0B895",
     "psychic": "#B50050",
     "ice": "#0068AA",
@@ -45,11 +46,34 @@ const Pokemon = (props) => {
     "fighting": "#B3370E"
   }
 
+  let hover = {
+    "grass": "#79FF8B",
+    "fire": "#FF8B79",
+    "water": "#79B3FF",
+    "poison": "#B979FF",
+    "bug": "#C4FF79",
+    "electric": "#FDFF79",
+    "normal": "#FFF0A9",
+    "psychic": "#FFA9CC",
+    "ice": "#A9ECFF",
+    "flying": "#FFF0A9",
+    "fairy": "#FFA9EA",
+    "ground": "#FFD3A9",
+    "rock": "#FFBB7E",
+    "ghost": "#D582FF",
+    "dragon": "#8283FF",
+    "fighting": "#FFBB7E"
+  }
+
   return (
     <button className="Pokemon"
       disabled={!isEnabled}
-      style={{background: background[props.type],
-      'borderColor': border[props.type]
+      style={{
+        background: background[props.type],
+        borderColor: border[props.type],
+      ':hover': {
+        borderColor: hover[props.type]
+      }
       }}
       onClick={() => props.team.length < 6 && props.addPokemon(props.id)}>
 
@@ -58,4 +82,4 @@ const Pokemon = (props) => {
   )
 }
 
-export default Pokemon
+export default Radium(Pokemon)

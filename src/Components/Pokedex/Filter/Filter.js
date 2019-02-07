@@ -40,7 +40,7 @@ class Filter extends Component {
 
   componentDidUpdate (prevProps, prevState) {
     if (prevState.filteredType !== this.state.filteredType || prevState.filteredEvolution !== this.state.filteredEvolution) {
-      axios.post(`/api/pokemon/filter?type=${this.state.filteredType}&evolution=${this.state.filteredEvolution}`).then(res => {
+      axios.get(`/api/pokemon/filter?type=${this.state.filteredType}&evolution=${this.state.filteredEvolution}`).then(res => {
         this.props.getPokedex(res.data)
       })
     }
@@ -84,8 +84,6 @@ class Filter extends Component {
     this.setState({
       [event.target.name] : arrayCopy,
       [event.target.toggle] : toggleCopy
-    }, () => {
-      console.log(this.state.filteredType, this.state.filteredEvolution)
     })
   }
 

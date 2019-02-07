@@ -33,3 +33,9 @@
   text-transform: uppercase;
   border: 1px solid #C9C9C9;
 }
+
+#warning {
+  background: red;
+  border-radius: 20px;
+  color: white;
+}

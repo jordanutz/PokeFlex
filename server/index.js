@@ -17,7 +17,7 @@ app.get('/api/team', controller.getTeam)
 app.get('/api/stats/weakness', controller.getWeakness)
 app.get('/api/stats/resistance', controller.getResistance)
 app.post('/api/pokemon', controller.createPokemon)
-app.post('/api/pokemon/filter', controller.filterPokemon)
+app.get('/api/pokemon/filter', controller.filterPokemon)
 app.delete('/api/pokemon/:id', controller.deleteTeam)
 
 PORT = 1993;

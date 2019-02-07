@@ -42,7 +42,7 @@ class Pokedex extends Component {
       )
     })
 
-    const displayFilter = this.state.toggle && <Filter retrievePokedex={this.retrievePokedex}/>
+    const displayFilter = this.state.toggle && <Filter/>
 
     return (
       <main>
@@ -57,7 +57,7 @@ class Pokedex extends Component {
 }
 
 const mapStateToProps = (state) => {
-  console.log(state)
+  // console.log(state)
   return {
     pokedex: state.pokedex
   }

@@ -47,11 +47,11 @@ module.exports = {
 
   filterPokemon: (req, res) => {
     const db = req.app.get('db')
-    const filteredData = req.query.type.split(',')
+    const filteredType = req.query.type.split(',')
     db.get_pokedex()
     .then(pokedex => {
       let filteredPokemon = pokedex.filter( pokemon => {
-        return filteredData.indexOf(pokemon.type) === -1
+        return filteredType.indexOf(pokemon.type) === -1
       })
       res.status(200).send(filteredPokemon)
     })

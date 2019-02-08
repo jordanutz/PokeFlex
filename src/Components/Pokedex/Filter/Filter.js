@@ -60,18 +60,20 @@ class Filter extends Component {
 
   // setState is asynchronous, so must include callback as second parameter to access mutated state.
 
-  filterPokedex = (event, value, source) => {
+  filterPokedex = (event, source) => {
+
     if (source === 'type') {
-      this.filterX(event, value, this.state.typeToggle, this.state.filteredType)
+      this.filterX(event, this.state.typeToggle, this.state.filteredType)
     }
     else {
-      this.filterX(event, value, this.state.evolutionToggle, this.state.filteredEvolution)
+      this.filterX(event, this.state.evolutionToggle, this.state.filteredEvolution)
     }
   }
 
-  filterX = (event, value, toggle, array) => {
+  filterX = (event, toggle, array) => {
     const toggleCopy = {...toggle}
     const arrayCopy = [...array]
+    const {target: {value}} = event
 
     toggleCopy[value] = !toggleCopy[value]
 
@@ -93,22 +95,22 @@ class Filter extends Component {
 
     const displayType = this.state.toggleType &&
       <form className="ToggleSelection">
-        <Form.Check type="checkbox" name="filteredType" label="Normal" value="normal" toggle="typeToggle" onClick={ (e) => this.filterPokedex(e, e.target.value, 'type')}/>
-        <Form.Check type="checkbox" name="filteredType" label="Grass" value="grass" toggle="typeToggle" onClick={ (e) => this.filterPokedex(e, e.target.value, 'type')}/>
-        <Form.Check type="checkbox" name="filteredType" label="Fire" value="fire" toggle="typeToggle" onClick={ (e) => this.filterPokedex(e, e.target.value, 'type')}/>
-        <Form.Check type="checkbox" name="filteredType" label="Water" value="water" toggle="typeToggle" onClick={ (e) => this.filterPokedex(e, e.target.value, 'type')}/>
-        <Form.Check type="checkbox" name="filteredType" label="Fighting" value="fighting" toggle="typeToggle" onClick={ (e) => this.filterPokedex(e, e.target.value, 'type')}/>
-        <Form.Check type="checkbox" name="filteredType" label="Flying" value="flying" toggle="typeToggle" onClick={ (e) => this.filterPokedex(e, e.target.value, 'type')}/>
-        <Form.Check type="checkbox" name="filteredType" label="Poison" value="poison" toggle="typeToggle" onClick={ (e) => this.filterPokedex(e, e.target.value, 'type')}/>
-        <Form.Check type="checkbox" name="filteredType" label="Ground" value="ground" toggle="typeToggle" onClick={ (e) => this.filterPokedex(e, e.target.value, 'type')}/>
-        <Form.Check type="checkbox" name="filteredType" label="Rock" value="rock" toggle="typeToggle" onClick={ (e) => this.filterPokedex(e, e.target.value, 'type')}/>
-        <Form.Check type="checkbox" name="filteredType" label="Bug" value="bug" toggle="typeToggle" onClick={ (e) => this.filterPokedex(e, e.target.value, 'type')}/>
-        <Form.Check type="checkbox" name="filteredType" label="Ghost" value="ghost" toggle="typeToggle" onClick={ (e) => this.filterPokedex(e, e.target.value, 'type')}/>
-        <Form.Check type="checkbox" name="filteredType" label="Electric" value="electric" toggle="typeToggle" onClick={ (e) => this.filterPokedex(e, e.target.value, 'type')}/>
-        <Form.Check type="checkbox" name="filteredType" label="Psychic" value="psychic" toggle="typeToggle" onClick={ (e) => this.filterPokedex(e, e.target.value, 'type')}/>
-        <Form.Check type="checkbox" name="filteredType" label="Ice" value="ice" toggle="typeToggle" onClick={ (e) => this.filterPokedex(e, e.target.value, 'type')}/>
-        <Form.Check type="checkbox" name="filteredType" label="Dragon" value="dragon" toggle="typeToggle" onClick={ (e) => this.filterPokedex(e, e.target.value, 'type')}/>
-        <Form.Check type="checkbox" name="filteredType" label="Fairy" value="fairy" toggle="typeToggle" onClick={ (e) => this.filterPokedex(e, e.target.value, 'type')}/>
+        <Form.Check type="checkbox" name="filteredType" label="Normal" value="normal" toggle="typeToggle" onClick={ (e) => this.filterPokedex(e, 'type')}/>
+        <Form.Check type="checkbox" name="filteredType" label="Grass" value="grass" toggle="typeToggle" onClick={ (e) => this.filterPokedex(e, 'type')}/>
+        <Form.Check type="checkbox" name="filteredType" label="Fire" value="fire" toggle="typeToggle" onClick={ (e) => this.filterPokedex(e, 'type')}/>
+        <Form.Check type="checkbox" name="filteredType" label="Water" value="water" toggle="typeToggle" onClick={ (e) => this.filterPokedex(e, 'type')}/>
+        <Form.Check type="checkbox" name="filteredType" label="Fighting" value="fighting" toggle="typeToggle" onClick={ (e) => this.filterPokedex(e, 'type')}/>
+        <Form.Check type="checkbox" name="filteredType" label="Flying" value="flying" toggle="typeToggle" onClick={ (e) => this.filterPokedex(e, 'type')}/>
+        <Form.Check type="checkbox" name="filteredType" label="Poison" value="poison" toggle="typeToggle" onClick={ (e) => this.filterPokedex(e, 'type')}/>
+        <Form.Check type="checkbox" name="filteredType" label="Ground" value="ground" toggle="typeToggle" onClick={ (e) => this.filterPokedex(e, 'type')}/>
+        <Form.Check type="checkbox" name="filteredType" label="Rock" value="rock" toggle="typeToggle" onClick={ (e) => this.filterPokedex(e, 'type')}/>
+        <Form.Check type="checkbox" name="filteredType" label="Bug" value="bug" toggle="typeToggle" onClick={ (e) => this.filterPokedex(e, 'type')}/>
+        <Form.Check type="checkbox" name="filteredType" label="Ghost" value="ghost" toggle="typeToggle" onClick={ (e) => this.filterPokedex(e, 'type')}/>
+        <Form.Check type="checkbox" name="filteredType" label="Electric" value="electric" toggle="typeToggle" onClick={ (e) => this.filterPokedex(e, 'type')}/>
+        <Form.Check type="checkbox" name="filteredType" label="Psychic" value="psychic" toggle="typeToggle" onClick={ (e) => this.filterPokedex(e, 'type')}/>
+        <Form.Check type="checkbox" name="filteredType" label="Ice" value="ice" toggle="typeToggle" onClick={ (e) => this.filterPokedex(e, 'type')}/>
+        <Form.Check type="checkbox" name="filteredType" label="Dragon" value="dragon" toggle="typeToggle" onClick={ (e) => this.filterPokedex(e, 'type')}/>
+        <Form.Check type="checkbox" name="filteredType" label="Fairy" value="fairy" toggle="typeToggle" onClick={ (e) => this.filterPokedex(e, 'type')}/>
       </form>
 
     const displayEvolution = this.state.toggleEvolution &&

@@ -1,9 +1,16 @@
 module.exports = {
   getPokedex: (req, res) => {
     const db = req.app.get('db')
-    db.get_pokedex()
-    .then(pokedex => res.status(200).send(pokedex))
-    // .catch(error => console.log(error))
+    const {team} = req.body
+
+    db.get_pokedex().then(pokedex => {
+      let myPokedex = pokedex.filter( (pokemon, index) => {
+        let found = team.find(element => element.id === pokemon.id)
+        return found ? false : true
+      })
+      res.status(200).send(myPokedex)
+    })
+    .catch(error => console.log(error))
   },
 
   createPokemon: (req, res) => {
@@ -49,7 +56,7 @@ module.exports = {
     const db = req.app.get('db')
     const filteredType = req.query.type.split(',')
     const filteredEvolution = req.query.evolution.split(',')
-    console.log(filteredType, filteredEvolution)
+    // console.log(filteredType, filteredEvolution)
 
     db.get_pokedex()
     .then(pokedex => {

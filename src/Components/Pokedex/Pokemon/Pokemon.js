@@ -4,9 +4,8 @@ import Radium from 'radium'
 
 const Pokemon = (props) => {
 
-  // console.log(props.team.length > 6)
-
-  const isEnabled = props.team.length <= 6
+  // console.log(props)
+  // const isEnabled = props.team.length <= 6
 
   let background = {
     "grass": "#53FF73",
@@ -65,9 +64,9 @@ const Pokemon = (props) => {
     "fighting": "#FFBB7E"
   }
 
+  // disabled={!isEnabled}
   return (
     <button className="Pokemon"
-      disabled={!isEnabled}
       style={{
         background: background[props.type],
         borderColor: border[props.type],

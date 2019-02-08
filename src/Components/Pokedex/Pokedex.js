@@ -1,15 +1,20 @@
 import React, {Component} from 'react'
 import './Pokedex.css'
-import axios from 'axios'
-import {connect} from 'react-redux'
-import {getPokedex} from '../../redux/reducer'
 
+// Components
 import Pokemon from './Pokemon/Pokemon'
 import Filter from './Filter/Filter'
 
+// Packages
+import axios from 'axios'
+
+// Redux
+import {connect} from 'react-redux'
+import {getPokedex, getTeam} from '../../redux/reducer'
+
 class Pokedex extends Component {
-  constructor () {
-    super()
+  constructor (props) {
+    super(props)
     this.state = {
       toggle: false,
     }
@@ -19,8 +24,22 @@ class Pokedex extends Component {
     this.retrievePokedex()
   }
 
+  componentDidUpdate (prevProps) {
+    if (prevProps.team !== this.props.team) {
+      console.log(this.props.team)
+
+      let myTeam = {
+        team: this.props.team
+      }
+
+      axios.post('/api/pokemon', myTeam).then(res => {
+        this.props.getPokedex(res.data)
+      })
+    }
+  }
+
   retrievePokedex = () => {
-    axios.get('/api/pokemon').then(res => {
+    axios.post('/api/pokemon').then(res => {
       this.props.getPokedex(res.data)
     })
   }
@@ -33,8 +52,7 @@ class Pokedex extends Component {
 
   render () {
 
-    const {pokedex} = this.props
-    const displayedPokedex = pokedex.map(pokemon => {
+    const displayedPokedex = this.props.pokedex.map(pokemon => {
       return (
         <div className="PokemonIcon" key={pokemon.id} >
           <Pokemon {...pokemon} addPokemon={this.props.addPokemon} team={this.props.team}/>
@@ -59,12 +77,14 @@ class Pokedex extends Component {
 const mapStateToProps = (state) => {
   // console.log(state)
   return {
-    pokedex: state.pokedex
+    pokedex: state.pokedex,
+    team: state.team
   }
 }
 
 const mapDispatchToProps = {
-  getPokedex
+  getPokedex,
+  getTeam
 }
 
 export default connect(mapStateToProps, mapDispatchToProps)(Pokedex)

@@ -1,18 +1,22 @@
 import React, { Component } from 'react'
 import './Reset.css'
-import axios from 'axios'
 
-
+// Components
 import Header from './Components/Header/Header'
 import Pokedex from './Components/Pokedex/Pokedex'
 import Team from './Components/Team/Team'
 
+// Packages
+import axios from 'axios'
+
+// Redux
+import {connect} from 'react-redux'
+import {getTeam, getPokedex} from './redux/reducer'
 
 class App extends Component {
   constructor () {
     super()
     this.state = {
-      team: [],
       weakness: {},
       resistance: {}
     }
@@ -26,14 +30,12 @@ class App extends Component {
 
   getTeam = () => {
     axios.get('/api/team').then(res => {
-      this.setState({
-        team: res.data
-      })
+      this.props.getTeam(res.data)
     })
   }
 
   addPokemon = (id) => {
-    axios.post('/api/pokemon', {id}).then(res => {
+    axios.post('/api/team', {id}).then(res => {
       this.getTeam()
       this.getWeakness()
       this.getResistance()
@@ -41,7 +43,6 @@ class App extends Component {
   }
 
   deletePokemon = (id) => {
-    console.log(id)
     axios.delete(`/api/pokemon/${id}`).then(res => {
       this.getTeam()
       this.getWeakness()
@@ -66,20 +67,35 @@ class App extends Component {
   }
 
   render() {
+
+    // console.log(this.props)
+
     return (
       <div className="App">
         <Header />
-        <Team team={this.state.team}
+        <Team team={this.props.team}
           deletePokemon={this.deletePokemon}
           weakness={this.state.weakness}
           resistance={this.state.resistance}
           />
 
-        <Pokedex addPokemon={this.addPokemon}
-          team={this.state.team}/>
+        <Pokedex addPokemon={this.addPokemon}/>
       </div>
     );
   }
 }
 
-export default App
+const mapStateToProps = (state) => {
+  // console.log(state)
+  return {
+    team: state.team,
+    pokedex: state.pokedex
+  }
+}
+
+const mapDispatchToProps = {
+  getTeam,
+  getPokedex
+}
+
+export default connect(mapStateToProps, mapDispatchToProps)(App)

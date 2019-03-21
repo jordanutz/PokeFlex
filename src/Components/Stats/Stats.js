@@ -3,9 +3,8 @@ import './Stats.css'
 
 const Stats = (props) => {
 
-  console.log(props)
-
-  console.log(props.weakness.normal)
+  // console.log(props)
+  // console.log(props.weakness.normal)
 
   return (
     <div className="Stats">

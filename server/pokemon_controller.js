@@ -1,5 +1,5 @@
 module.exports = {
-  getPokedex: (req, res) => {
+  getPokemon: (req, res) => {
     const db = req.app.get('db')
     const {team} = req.body
 
@@ -14,7 +14,6 @@ module.exports = {
   },
 
   createPokemon: (req, res) => {
-    // console.log('req body', req.body)
     const {id} = req.body
     const db = req.app.get('db')
     db.create_team(id)
@@ -45,7 +44,6 @@ module.exports = {
   },
 
   getResistance: (req, res) => {
-    // console.log('hit')
     const db = req.app.get('db')
     db.get_resistance()
     .then(stats => res.status(200).send(stats))
@@ -54,17 +52,24 @@ module.exports = {
 
   filterPokemon: (req, res) => {
     const db = req.app.get('db')
-    const filteredType = req.query.type.split(',')
-    const filteredEvolution = req.query.evolution.split(',')
-    // console.log(filteredType, filteredEvolution)
+    const {type, evolution, dex, team} = req.body
 
     db.get_pokedex()
     .then(pokedex => {
-      let filteredPokemon = pokedex.filter( pokemon => {
-        return filteredType.indexOf(pokemon.type) === -1 && filteredEvolution.indexOf(pokemon.evolution) === -1
+
+      let filteredPokedex = pokedex.filter(pokemon => {
+        return type.indexOf(pokemon.type) === -1 &&
+        evolution.indexOf(pokemon.evolution) === -1
       })
-      res.status(200).send(filteredPokemon)
+
+      let finalPokedex = filteredPokedex.filter(pokemon => {
+        let found = team.find(element => element.id === pokemon.id)
+        return found ? false : true
+      })
+
+      res.status(200).send(finalPokedex)
+
     })
-    .catch(error => console.log('Unable to retrieve filtered pokedex', error))
+    .catch(error => console.log(error))
   }
 }

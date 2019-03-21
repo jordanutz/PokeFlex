@@ -20,28 +20,19 @@ class Pokedex extends Component {
     }
   }
 
-  componentDidMount () {
-    this.retrievePokedex()
-  }
-
   componentDidUpdate (prevProps) {
+    console.log(prevProps)
     if (prevProps.team !== this.props.team) {
-      console.log(this.props.team)
 
       let myTeam = {
-        team: this.props.team
+        team: this.props.team,
+        pokedex: this.props.pokedex
       }
 
       axios.post('/api/pokemon', myTeam).then(res => {
         this.props.getPokedex(res.data)
       })
     }
-  }
-
-  retrievePokedex = () => {
-    axios.post('/api/pokemon').then(res => {
-      this.props.getPokedex(res.data)
-    })
   }
 
   toggleFilter = () => {

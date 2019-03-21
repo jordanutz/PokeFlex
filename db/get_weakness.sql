@@ -6,7 +6,7 @@ select SUM(normal) as normal,
   SUM(flying) as flying,
   SUM(poison) as poison,
   SUM(ground) as ground,
-  SUM(rock) as rock, 
+  SUM(rock) as rock,
   SUM(bug) as bug,
   SUM(ghost) as ghost,
   SUM(electric) as electric,
@@ -14,4 +14,4 @@ select SUM(normal) as normal,
   SUM(ice) as ice,
   SUM(dragon) as dragon,
   SUM(fairy) as fairy
-from team join weakness on weakness.pokemon_id = team.pokemon_id;
+FROM team JOIN weakness ON weakness.pokemon_id = team.pokemon_id;

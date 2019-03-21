@@ -86,7 +86,6 @@ class App extends Component {
 }
 
 const mapStateToProps = (state) => {
-  // console.log(state)
   return {
     team: state.team,
     pokedex: state.pokedex

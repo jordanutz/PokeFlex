@@ -1,5 +1,5 @@
-insert into team
+INSERT INTO team
   (pokemon_id)
-  values
+  VALUES
   ($1)
-  returning *
+returning *;

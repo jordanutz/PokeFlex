@@ -12,12 +12,12 @@ massive(process.env.CONNECTION_STRING).then(db => {
   app.set('db', db)
 }).catch(error => console.log(error))
 
-app.post('/api/pokemon', controller.getPokedex)
+app.post('/api/pokemon', controller.getPokemon)
 app.get('/api/team', controller.getTeam)
 app.get('/api/stats/weakness', controller.getWeakness)
 app.get('/api/stats/resistance', controller.getResistance)
 app.post('/api/team', controller.createPokemon)
-app.get('/api/pokemon/filter', controller.filterPokemon)
+app.post('/api/pokemon/filter', controller.filterPokemon)
 app.delete('/api/pokemon/:id', controller.deleteTeam)
 
 PORT = 1993;

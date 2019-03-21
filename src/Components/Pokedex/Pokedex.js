@@ -55,7 +55,7 @@ class Pokedex extends Component {
 
     return (
       <main>
-        <h1 onClick={this.toggleFilter}>Filter</h1>
+        <h3 onClick={this.toggleFilter}>Filter</h3>
         {displayFilter}
         <div className="Pokedex">
           {displayedPokedex}

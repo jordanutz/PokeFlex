@@ -394,7 +394,7 @@ class Filter extends Component {
     return (
       <section>
         <div className="FilterCondition">
-          <h2>Type</h2>
+          <h3>Type</h3>
           {displayType}
           <button onClick={this.handleToggleType}>All Selected ▼</button>
         </div>

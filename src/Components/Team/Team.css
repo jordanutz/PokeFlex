@@ -8,6 +8,10 @@
   align-items: center;
 }
 
+.TeamHeader h1 {
+  font-weight: bolder;
+}
+
 .Team h1 {
   text-align: center;
 }

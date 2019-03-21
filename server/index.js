@@ -20,7 +20,7 @@ app.post('/api/team', controller.createPokemon)
 app.post('/api/pokemon/filter', controller.filterPokemon)
 app.delete('/api/pokemon/:id', controller.deleteTeam)
 
-PORT = 1993;
+PORT = 7200;
 app.listen(PORT, () => {
-  console.log(`Blasting off to Port ${1993}`)
+  console.log(`Blasting off to Port ${7200}`)
 })

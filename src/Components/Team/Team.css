@@ -72,6 +72,10 @@
   padding: .5rem 0;
 }
 
+.PokemonDetails h1 {
+  font-weight: bolder;
+}
+
 .StatsDisplay {
   width: 100%;
   height: auto;

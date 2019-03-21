@@ -5,6 +5,7 @@ import './Reset.css'
 import Header from './Components/Header/Header'
 import Pokedex from './Components/Pokedex/Pokedex'
 import Team from './Components/Team/Team'
+import Footer from './Components/Footer/Footer'
 
 // Packages
 import axios from 'axios'
@@ -80,6 +81,7 @@ class App extends Component {
           />
 
         <Pokedex addPokemon={this.addPokemon}/>
+        <Footer />
       </div>
     );
   }

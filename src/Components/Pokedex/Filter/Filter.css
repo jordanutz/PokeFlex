@@ -7,6 +7,10 @@ section {
   border-top: 1px solid #C9C9C9;
 }
 
+form span {
+  color: black;
+}
+
 
 .FilterCondition {
   min-width: 30%;
@@ -18,9 +22,19 @@ section {
 
 .FilterCondition button {
   width: 60%;
-  border: none;
+  border: 1px solid #ccc;
   padding: .5rem;
   cursor: pointer;
+}
+
+.ant-checkbox-checked .ant-checkbox-inner {
+  background: #FF5353;
+  border: none;
+  border-radius: 50%;
+}
+
+.ant-checkbox {
+  background: none !important;
 }
 
 .FilterCondition button:hover {
@@ -28,12 +42,13 @@ section {
 }
 
 .ToggleSelection {
-  background: rgba(51, 164, 255, .9);
+  background: rgba(238, 240, 242, .9);
   color: white;
   position: absolute;
   padding: 1rem 3rem 1rem 1rem;
   top: 580px;
   margin-left: 30px;
+  border: 1px solid #ccc;
 }
 
 .ToggleSelection input {

@@ -7,6 +7,10 @@ main {
   padding: 1rem;
 }
 
+main h1 {
+  cursor: pointer;
+}
+
 .Pokedex {
   max-width: 60%;
   min-height: 100%;

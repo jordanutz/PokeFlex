@@ -51,7 +51,9 @@ class Filter extends Component {
       psychic: true,
       ice: true,
       dragon: true,
-      fairy: true
+      fairy: true,
+      evolved: true,
+      unevolved: true
     }
   }
 
@@ -186,6 +188,19 @@ class Filter extends Component {
     })
   }
 
+  evolvedChange = (e) => {
+    this.setState({
+      evolved: !this.state.evolved
+    })
+  }
+
+  unevolvedChange = (e) => {
+    this.setState({
+      unevolved: !this.state.unevolved
+    })
+  }
+
+
   // setState is asynchronous, so must include callback as second parameter to access mutated state.
 
   filterPokedex = (event, source) => {
@@ -219,7 +234,7 @@ class Filter extends Component {
 
   render () {
 
-    console.log('normal', this.state.normal)
+    // console.log('normal', this.state.normal)
 
 
     const displayType = this.state.toggleType &&
@@ -356,10 +371,25 @@ class Filter extends Component {
       </form>
 
     const displayEvolution = this.state.toggleEvolution &&
-    <form id="evolution" className="ToggleSelection">
-      <Form.Check type="checkbox" name="filteredEvolution" label="Not Fully Evolved" value="notFullyEvolved" toggle="evolutionToggle" onClick={ (e) => this.filterPokedex(e, e.target.value, 'evolution')}/>
-      <Form.Check type="checkbox" name="filteredEvolution" label="Fully Evolved" value="fullyEvolved" toggle="evolutionToggle" onClick={ (e) => this.filterPokedex(e, e.target.value, 'evolution')}/>
+      <form id="evolution" className="ToggleSelection">
+        <h2><Checkbox checked={this.state.evolved}
+              onChange={(e) => this.evolvedChange(e)}
+              name="filteredEvolution"
+              label="Fully Evolved"
+              value="fullyEvolved"
+              toggle="evolutionToggle"
+              onClick={ (e) => this.filterPokedex(e, e.target.value, 'evolution')}><span>Fully Evolved</span>
+        </Checkbox></h2>
+        <h2><Checkbox checked={this.state.unevolved}
+              onChange={(e) => this.unevolvedChange(e)}
+              name="filteredEvolution"
+              label="Not Fully Evolved"
+              value="notFullyEvolved"
+              toggle="evolutionToggle"
+              onClick={ (e) => this.filterPokedex(e, e.target.value, 'evolution')}><span>Not Fully Evolved</span>
+        </Checkbox></h2>
     </form>
+
 
     return (
       <section>

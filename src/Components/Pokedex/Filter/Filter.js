@@ -220,6 +220,8 @@ class Filter extends Component {
 
     toggleCopy[value] = !toggleCopy[value]
 
+
+
     if (toggleCopy[value] && arrayCopy.indexOf(value) === -1) {
       arrayCopy.push(value)
     } else {
@@ -399,7 +401,7 @@ class Filter extends Component {
           <button onClick={this.handleToggleType}>All Selected ▼</button>
         </div>
         <div className="FilterCondition">
-          <h2>Evolution</h2>
+          <h3>Evolution</h3>
           <button onClick={this.handleToggleEvolution}>All Selected ▼</button>
           {displayEvolution}
         </div>

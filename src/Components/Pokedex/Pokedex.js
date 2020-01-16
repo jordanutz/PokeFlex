@@ -4,9 +4,11 @@ import './Pokedex.css'
 // Components
 import Pokemon from './Pokemon/Pokemon'
 import Filter from './Filter/Filter'
+import Pokeballs from './assets/pokeballs.svg'
 
 // Packages
 import axios from 'axios'
+import {Collapse} from 'react-bootstrap';
 
 // Redux
 import {connect} from 'react-redux'
@@ -17,6 +19,7 @@ class Pokedex extends Component {
     super(props)
     this.state = {
       toggle: false,
+      expand: false
     }
   }
 
@@ -39,7 +42,6 @@ class Pokedex extends Component {
         deleted: findDeleted && findDeleted[0]
       }
 
-      console.log(myTeam)
 
       axios.post('/api/pokemon/filter', myTeam).then(res => {
         this.props.getPokedex(res.data)
@@ -49,7 +51,8 @@ class Pokedex extends Component {
 
   toggleFilter = () => {
     this.setState({
-      toggle: !this.state.toggle
+      toggle: !this.state.toggle, 
+      expand: !this.state.expand
     })
   }
 
@@ -65,12 +68,27 @@ class Pokedex extends Component {
       )
     })
 
-    const displayFilter = this.state.toggle && <Filter/>
-
     return (
       <main>
-        <h3 onClick={this.toggleFilter}>Filter</h3>
-        {displayFilter}
+        <img src={Pokeballs} onClick={this.toggleFilter} />
+
+        <Collapse in={this.state.toggle}>
+       
+       <div style={{width: '100%'}}>
+        <Filter 
+          toggle={this.state.toggle} 
+          toggleOverlay={this.props.toggleOverlay} 
+          overlay={this.props.overlay}
+          handleToggleEvolution={this.props.handleToggleEvolution}
+          handleToggleType={this.props.handleToggleType}
+          toggleType={this.props.toggleType}
+          toggleEvolution={this.props.toggleEvolution}
+        />
+        </div>
+
+        </Collapse>
+    
+
         <div className="Pokedex">
           {displayedPokedex}
         </div>

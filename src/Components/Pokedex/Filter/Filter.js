@@ -10,8 +10,6 @@ class Filter extends Component {
   constructor (props) {
     super(props)
     this.state = {
-      toggleType: false,
-      toggleEvolution: false,
       typeToggle: {
         normal: false,
         grass: false,
@@ -76,18 +74,6 @@ class Filter extends Component {
         this.props.getPokedex(res.data)
       })
     }
-  }
-
-  handleToggleType = () => {
-    this.setState({
-      toggleType: !this.state.toggleType
-    })
-  }
-
-  handleToggleEvolution = () => {
-    this.setState({
-      toggleEvolution: !this.state.toggleEvolution
-    })
   }
 
   // Condense these into one dynamic function when you have more time !!!!
@@ -233,7 +219,7 @@ class Filter extends Component {
 
   render () {
 
-    const displayType = this.state.toggleType &&
+    const displayType = this.props.toggleType && 
 
       <form className="ToggleSelection">
           <h2><Checkbox checked={this.state.normal}
@@ -366,7 +352,7 @@ class Filter extends Component {
           </Checkbox></h2>
       </form>
 
-    const displayEvolution = this.state.toggleEvolution &&
+    const displayEvolution = this.props.toggleEvolution &&
       <form id="evolution" className="ToggleSelection">
         <h2><Checkbox checked={this.state.evolved}
               onChange={(e) => this.evolvedChange(e)}
@@ -388,18 +374,19 @@ class Filter extends Component {
 
 
     return (
-      <section>
+
+        <section>
         <div className="FilterCondition">
-          <h3>Type</h3>
           {displayType}
-          <button onClick={this.handleToggleType}>{`All Selected ${this.state.toggleType ? '▲' : '▼'  } `}</button>
+          <button onClick={() => this.props.handleToggleType()}>{`Type ${this.props.toggleType ? '▲' : '▼'  } `}</button>
         </div>
         <div className="FilterCondition">
-          <h3>Evolution</h3>
-          <button onClick={this.handleToggleEvolution}>{`All Selected ${this.state.toggleEvolution ? '▲' : '▼'  } `}</button>
+          <button onClick={() => this.props.handleToggleEvolution()}>{`Evolution ${this.props.toggleEvolution ? '▲' : '▼'  } `}</button>
           {displayEvolution}
         </div>
-      </section>
+        </section>
+    
+
     )
   }
 }

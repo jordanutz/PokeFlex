@@ -1,12 +1,11 @@
 import React from 'react'
 import './Stats.css'
+import {Collapse} from 'react-bootstrap';
 
 const Stats = (props) => {
 
-  // console.log(props)
-  // console.log(props.weakness.normal)
-
   return (
+    
     <div className="Stats">
       <h1>This Team is Weak Against:</h1>
       <div className="MainStats">

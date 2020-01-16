@@ -10,6 +10,7 @@ import Footer from './Components/Footer/Footer'
 // Packages
 import axios from 'axios'
 
+
 // Redux
 import {connect} from 'react-redux'
 import {getTeam, getPokedex} from './redux/reducer'
@@ -19,11 +20,14 @@ class App extends Component {
     super()
     this.state = {
       weakness: {},
-      resistance: {}
+      resistance: {}, 
+      overlay: false, 
+      toggleType: false,
+      toggleEvolution: false
     }
   }
 
-  componentDidMount () {
+  componentDidMount() {
     this.getTeam()
     this.getWeakness()
     this.getResistance()
@@ -67,20 +71,53 @@ class App extends Component {
     })
   }
 
-  render() {
+  toggleOverlay = () => {
+    this.setState({
+      overlay: false,
+      toggleEvolution: false, 
+      toggleType: false
+    })
+  }
 
-    // console.log(this.props)
+  handleToggleType = () => {
+    console.log('fire')
+    this.setState({
+      overlay: true,
+      toggleType: !this.state.toggleType,
+      toggleEvolution: false
+    })
+  }
+
+  handleToggleEvolution = () => {
+    this.setState({
+      overlay: true,
+      toggleEvolution: !this.state.toggleEvolution,
+      toggleType: false
+    })
+  }
+
+  render() {
 
     return (
       <div className="App">
+        {this.state.overlay && <div className="overlay" onClick={this.toggleOverlay}></div>}
         <Header />
-        <Team team={this.props.team}
+        <Team 
+          team={this.props.team}
           deletePokemon={this.deletePokemon}
           weakness={this.state.weakness}
           resistance={this.state.resistance}
-          />
+        />
 
-        <Pokedex addPokemon={this.addPokemon}/>
+        <Pokedex 
+        addPokemon={this.addPokemon} 
+        toggleOverlay={this.toggleOverlay} 
+        overlay={this.state.overlay} 
+        handleToggleEvolution={this.handleToggleEvolution}
+        handleToggleType={this.handleToggleType}
+        toggleType={this.state.toggleType}
+        toggleEvolution={this.state.toggleEvolution}
+        />
         <Footer />
       </div>
     );

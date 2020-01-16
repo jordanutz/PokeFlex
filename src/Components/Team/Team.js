@@ -1,6 +1,7 @@
 import React, {Component} from 'react'
 import './Team.css'
 import Stats from '../Stats/Stats'
+import {Collapse} from 'react-bootstrap';
 
 class Team extends Component {
   constructor () {
@@ -81,7 +82,7 @@ class Team extends Component {
       <div className="StatToggle" onClick={this.toggleStats}>-</div> :
       <div className="StatToggle" onClick={this.toggleStats}>+</div>
 
-    const displayStats = this.state.toggleStats &&
+    const displayStats = 
       <Stats weakness={this.props.weakness} background={background} resistance={this.props.resistance}/>
 
     const toggleCheck = this.props.team.length > 0 && displayToggle
@@ -95,9 +96,11 @@ class Team extends Component {
         <div className="TeamDisplay">
           {displayedTeam}
         </div>
-        <div className="StatsDisplay" value="this.state.toggleStats">
+        <Collapse in={this.state.toggleStats}>
+        <div className="StatsDisplay">
           {displayStats}
         </div>
+        </Collapse>
       </div>
     )
   }

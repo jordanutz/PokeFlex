@@ -18,7 +18,8 @@
 
 .Team img {
   width: 125px;
-  height: 120px;
+  height: 125px;
+  object-fit: cover;
 }
 
 .TeamDisplay {
@@ -36,12 +37,13 @@
   justify-content: center;
   text-align: center;
   height: auto;
+  cursor: pointer;
 }
 
 .StatToggle {
   width: 35px;
   height: 38px;
-  background: #333DFF;
+  background: #F42951;
   border-radius: 5px;
   color: white;
   font-weight: bolder;
@@ -67,6 +69,7 @@
   display: flex;
   justify-content: center;
   align-items: center;
+  overflow: hidden;
 }
 
 .PokemonDetails {

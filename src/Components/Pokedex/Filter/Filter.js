@@ -63,7 +63,8 @@ class Filter extends Component {
       type: this.state.filteredType,
       evolution: this.state.filteredEvolution,
       dex: this.props.pokedex,
-      team: this.props.team
+      team: this.props.team, 
+      filter: true
     }
 
     if (prevState.filteredType !== this.state.filteredType
@@ -72,7 +73,6 @@ class Filter extends Component {
       // console.log(filtered)
 
       axios.post('/api/pokemon/filter', filtered).then(res => {
-        // console.log(res.data)
         this.props.getPokedex(res.data)
       })
     }
@@ -200,7 +200,6 @@ class Filter extends Component {
     })
   }
 
-
   // setState is asynchronous, so must include callback as second parameter to access mutated state.
 
   filterPokedex = (event, source) => {
@@ -220,8 +219,6 @@ class Filter extends Component {
 
     toggleCopy[value] = !toggleCopy[value]
 
-
-
     if (toggleCopy[value] && arrayCopy.indexOf(value) === -1) {
       arrayCopy.push(value)
     } else {
@@ -235,9 +232,6 @@ class Filter extends Component {
   }
 
   render () {
-
-    // console.log('normal', this.state.normal)
-
 
     const displayType = this.state.toggleType &&
 
@@ -398,11 +392,11 @@ class Filter extends Component {
         <div className="FilterCondition">
           <h3>Type</h3>
           {displayType}
-          <button onClick={this.handleToggleType}>All Selected ▼</button>
+          <button onClick={this.handleToggleType}>{`All Selected ${this.state.toggleType ? '▲' : '▼'  } `}</button>
         </div>
         <div className="FilterCondition">
           <h3>Evolution</h3>
-          <button onClick={this.handleToggleEvolution}>All Selected ▼</button>
+          <button onClick={this.handleToggleEvolution}>{`All Selected ${this.state.toggleEvolution ? '▲' : '▼'  } `}</button>
           {displayEvolution}
         </div>
       </section>

@@ -9,8 +9,8 @@ const Pokemon = (props) => {
 
   let background = {
     "grass": "#53FF73",
-    "fire": "#FF5353",
-    "water": "#5378FF",
+    "fire": "#F42951",
+    "water": "#1B75F8",
     "poison": "#8953FF",
     "bug": "#C6E80B",
     "electric": "#FEFF2D",

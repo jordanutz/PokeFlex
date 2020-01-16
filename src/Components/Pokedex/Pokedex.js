@@ -20,16 +20,28 @@ class Pokedex extends Component {
     }
   }
 
-  componentDidUpdate (prevProps) {
-    console.log(prevProps)
+  componentDidUpdate (prevProps, prevState) {
+
     if (prevProps.team !== this.props.team) {
+
+      let findDeleted;
+
+      if (prevProps.team.length) {
+          findDeleted = prevProps.team.filter(prev => {
+            return this.props.team.findIndex(curr => curr.id === prev.id) === -1
+        })
+      } 
 
       let myTeam = {
         team: this.props.team,
-        pokedex: this.props.pokedex
+        dex: this.props.pokedex, 
+        filter: false, 
+        deleted: findDeleted && findDeleted[0]
       }
 
-      axios.post('/api/pokemon', myTeam).then(res => {
+      console.log(myTeam)
+
+      axios.post('/api/pokemon/filter', myTeam).then(res => {
         this.props.getPokedex(res.data)
       })
     }
@@ -42,6 +54,8 @@ class Pokedex extends Component {
   }
 
   render () {
+
+    // console.log(this.props.pokedex)
 
     const displayedPokedex = this.props.pokedex.map(pokemon => {
       return (
